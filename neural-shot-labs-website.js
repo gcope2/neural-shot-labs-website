@@ -5,6 +5,11 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./nsl-home-screen.js";
+import "./nsl-about-screen.js";
+import "./nsl-contact-screen.js";
+import "./nsl-what-we-do-screen.js";
+import "./nsl-nav-bar.js";
 
 /**
  * `neural-shot-labs-website`
@@ -20,25 +25,17 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/neural-shot-labs-website.ar.json", import.meta.url).href +
-        "/../",
-    });
+    this.currentScreen = 'home';
+
+    this._handleRouteChange();
+    window.addEventListener('popstate', () => this._handleRouteChange());
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      currentScreen: { type: String },
     };
   }
 
@@ -48,16 +45,6 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--neural-shot-labs-website-label-font-size, var(--ddd-font-size-s));
       }
     `];
   }
@@ -65,19 +52,35 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+        <nsl-nav-bar @navigate=${this._handleNavigation}></nsl-nav-bar>
+
+        <div>
+        ${this.currentScreen === 'home' ? html`<nsl-home-screen></nsl-home-screen>` : ''}
+        ${this.currentScreen === 'about' ? html`<nsl-about-screen></nsl-about-screen>` : ''}
+        ${this.currentScreen === 'contact' ? html`<nsl-contact-screen></nsl-contact-screen>` : ''}
+        ${this.currentScreen === 'what-we-do' ? html`<nsl-what-we-do-screen></nsl-what-we-do-screen>` : ''}
+      </div>
+      `;
   }
 
-  /**
-   * haxProperties integration via file reference
-   */
-  static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
+  _handleRouteChange() {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get('page');
+
+    if (page && ['home', 'about', 'contact', 'what-we-do'].includes(page)) {
+      this.currentScreen = page;
+    } else {
+      this.currentScreen = 'home';
+      window.history.replaceState({}, '', '?page=home');
+    }
   }
+
+  _handleNavigation(e) {
+    const screen = e.detail.screen;
+    this.currentScreen = screen;
+    window.history.pushState({}, '', `?page=${screen}`);
+  }
+
 }
 
 globalThis.customElements.define(NeuralShotLabsWebsite.tag, NeuralShotLabsWebsite);
