@@ -20,7 +20,10 @@
     "module": "neural-shot-labs-website.js",
     "scripts": {
       "start": "web-dev-server",
-      "build": "rimraf public && rollup -c rollup.config.js && npm run analyze",
+      "build": "rimraf public && rollup -c rollup.config.js && npm run copy-assets && npm run analyze",
+      "copy-assets": "node scripts/copy-static.js",
+      "dev": "npm run copy-assets && web-dev-server",
+      "vercel-dev": "npm run copy-assets && vercel dev",
       "analyze": "cem analyze --litelement --exclude public",
       "dddaudit": "hax audit",
       "release": "npm run build && commit-and-tag-version && git push --follow-tags origin main && npm publish",

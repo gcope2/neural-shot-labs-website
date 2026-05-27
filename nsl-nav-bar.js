@@ -36,13 +36,21 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
     try {
       const res = await fetch('/api/menu');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      
+
       const data = await res.json();
-      this.navItems = data.items.filter(item => item.id !== "home");
+      this.navItems = (data.items || data).filter(item => item.id !== "home");
       this.requestUpdate();
     } catch (e) {
-      console.error("Failed to load menu", e);
-      this.navItems = [];
+      console.warn("Failed to load /api/menu, falling back to local outline.js", e);
+      try {
+        const outline = await import('./outline.js');
+        const data = outline.default || outline;
+        this.navItems = (data.items || data).filter(item => item.id !== "home");
+        this.requestUpdate();
+      } catch (err) {
+        console.error("Failed to load local outline.js", err);
+        this.navItems = [];
+      }
     }
   }
 
@@ -138,7 +146,7 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
     return html`
         <div class="top-row-wrapper">
             <a title="Home Button" href="?page=home" @click=${this._goHome}>
-            <img class="home-image" src="/images/game-of-throws-png.jpg" alt="Game of Throwers Logo">
+            <img class="home-image" src="/images/website-home-button-logo-png.jpg" alt="Neural Shot Labs Logo">
             </a>
 
             <div class="nav-buttons">

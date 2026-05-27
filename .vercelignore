@@ -1,0 +1,10 @@
+# Ignore nothing in public/images during dev
+!public/images/
+!public/images/**
+
+# But still ignore node_modules etc.
+node_modules/
+.next/
+.vercel/
+dist/
+build/
