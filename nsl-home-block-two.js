@@ -59,7 +59,7 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
       .subtitle {
         margin-top: 7px;
         font-size: 40px;
-        margin-bottom: 50px;
+        margin-bottom: 35px;
       }
       .paragraph-one {
         color: #D3D3D3;
@@ -82,6 +82,9 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
       .cards {
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
       }
     `];
   }
@@ -96,7 +99,9 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
         </div>
 
         <div class="cards">
-            
+            <nsl-cards class="card-one" style="width: 300px; height: 325px;" image="images/red-weight.png" title="Sports & Performance Tech" content="Our starting point. We’re building specialized tools that help throwers and coaches get better data, clearer feedback, and measurable progress — without adding complexity."></nsl-cards>
+            <nsl-cards class="card-two" style="width: 300px; height: 325px;" image="images/red-laptop.png" title="Custom AI & Mobile Tools" content="We design and build custom mobile and web applications that incorporate computer vision, data analysis, or lightweight machine learning — always scoped tightly to the actual problem."></nsl-cards>
+            <nsl-cards class="card-three" style="width: 300px; height: 325px;" image="images/red-light.png" title="AI Strategy & Advisory" content="For organizations exploring AI but tired of vague promises, we offer focused consulting — helping teams identify high-ROI use cases, evaluate approaches, and build internal capability without over-engineering."></nsl-cards>
         </div>
 
         <div class="under-text">
