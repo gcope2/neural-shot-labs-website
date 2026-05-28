@@ -10,6 +10,7 @@ import "./nsl-about-screen.js";
 import "./nsl-contact-screen.js";
 import "./nsl-what-we-do-screen.js";
 import "./nsl-nav-bar.js";
+import "./nsl-footer.js";
 
 /**
  * `neural-shot-labs-website`
@@ -45,6 +46,10 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
+        font-family: 'Inter', system_ui, sans-serif;
+      }
+      .footer {
+        padding-top: 40px;
       }
     `];
   }
@@ -52,14 +57,16 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-        <nsl-nav-bar @navigate=${this._handleNavigation}></nsl-nav-bar>
+      <nsl-nav-bar @navigate=${this._handleNavigation}></nsl-nav-bar>
 
-        <div>
+      <div>
         ${this.currentScreen === 'home' ? html`<nsl-home-screen></nsl-home-screen>` : ''}
         ${this.currentScreen === 'about' ? html`<nsl-about-screen></nsl-about-screen>` : ''}
         ${this.currentScreen === 'contact' ? html`<nsl-contact-screen></nsl-contact-screen>` : ''}
         ${this.currentScreen === 'what-we-do' ? html`<nsl-what-we-do-screen></nsl-what-we-do-screen>` : ''}
       </div>
+
+      <nsl-footer class="footer"></nsl-footer>
       `;
   }
 

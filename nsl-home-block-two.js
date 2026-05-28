@@ -1,0 +1,109 @@
+/**
+ * Copyright 2026 Gabby Cope
+ * @license Apache-2.0, see LICENSE for full text.
+ */
+import { LitElement, html, css } from "lit";
+import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./nsl-cards.js";
+
+/**
+ * `nsl-home-block-two`
+ * 
+ * @demo index.html
+ * @element nsl-home-block-two
+ */
+export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
+
+  static get tag() {
+    return "nsl-home-block-two";
+  }
+
+  constructor() {
+    super();
+    this.title = "";
+  }
+
+  // Lit reactive properties
+  static get properties() {
+    return {
+      ...super.properties,
+      title: { type: String },
+    };
+  }
+
+  // Lit scoped styles
+  static get styles() {
+    return [super.styles,
+    css`
+      :host {
+        display: block;
+        background-color: rgb(26 26 26 / var(--tw-bg-opacity, 1));
+        border-top: 1px solid rgb(255 255 255 / 0.1);
+        border-bottom: 1px solid rgb(255 255 255 / 0.1);
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        padding-left: 500px;
+        padding-top: 30px;
+        max-width: 600px;
+      }
+      .title {
+        color: #E31837;
+        margin-bottom: 0;
+        letter-spacing: 3px;
+        font-weight: normal;
+      }
+      .subtitle {
+        margin-top: 7px;
+        font-size: 40px;
+        margin-bottom: 50px;
+      }
+      .paragraph-one {
+        color: #D3D3D3;
+        font-weight: normal;
+        margin-bottom: 10px;
+      }
+
+      .paragraph-two {
+        color: #D3D3D3;
+        font-weight: normal;
+        text-align: center;
+        max-width: 600px;
+      }
+      .under-text {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: row;
+      }
+    `];
+  }
+
+  // Lit render the HTML
+  render() {
+    return html`
+        <div class="column">
+          <h6 class="title">WHAT WE DO</h6>
+          <h2 class="subtitle">Building focused intelligent systems across a few key areas.</h2>
+          <h6 class="paragraph-one">Everything we work on follows the same philosophy: start with real user needs, use the right level of AI, and ship tools that people rely on.</h6>
+        </div>
+
+        <div class="cards">
+            
+        </div>
+
+        <div class="under-text">
+            <h6 class="paragraph-two">We’re deliberately focused. We’d rather do a few things exceptionally well than spread ourselves thin across every possible AI trend.</h6>
+        </div>
+      `;
+  }
+}
+
+globalThis.customElements.define(NSLHomeBlockTwo.tag, NSLHomeBlockTwo);

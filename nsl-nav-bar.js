@@ -61,7 +61,15 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
       :host {
         display: block;
         width: 100%;
-        height: 125px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+
+        border-bottom: 1px solid rgba(255,255,255,0.06);
       }
 
       .top-row-wrapper {
@@ -69,74 +77,142 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        height: 100%;
+
+        padding: 5px 7px;
+
+        margin: 0 auto;
       }
 
       .home-image {
         cursor: pointer;
-        height: 130px;
+        height: 75px;
         padding-left: 20px;
+        width: auto;
+
+        transition:
+        filter 0.25s ease,
+        transform 0.25s ease;
       }
       .home-image:hover {
-        filter: drop-shadow(0 0 5px gold);
+        filter: drop-shadow(0 0 8px #E31837);
+        transform: scale(1.03);
       }
 
       .nav-buttons {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding-right: 150px;
-        gap: 50px;
+        padding-right: 25px;
+        gap: 35px;
       }
 
       .nav-item {
         position: relative;
         color: white;
-        font-size: 28px;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+
         cursor: pointer;
-        padding: 8px 12px;
+
+        padding: 8px 0;
+
+        transition:
+            color 0.25s ease,
+            transform 0.25s ease;
       }
 
+      .nav-item::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 100%;
+
+        width: 100%;
+        height: 12px;
+
+        background: transparent;
+     }
+
       .nav-item:hover {
-        color: gold;
-        filter: drop-shadow(0 0 5px gold);
+        color: #E31837;
       }
 
       .dropdown {
         position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: black;
-        border: 2px solid gold;
-        border-top: none;
+
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(14px);
+
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+
         display: none;
         flex-direction: column;
-        min-width: 220px;
-        box-shadow: 0 8px 16px black;
+
+        min-width: 170px;
+
+        padding: 6px;
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,0.35);
+
         z-index: 100;
       }
+
+      .dropdown a {
+        color: white;
+
+        padding: 10px 12px;
+
+        text-decoration: none;
+
+        font-size: 14px;
+        font-weight: 500;
+
+        border-radius: 8px;
+
+        transition:
+            background 0.2s ease,
+            color 0.2s ease;
+     }
 
       .nav-item:hover .dropdown {
         display: flex;
       }
 
-      .dropdown a {
-        color: white;
-        padding: 12px 20px;
-        text-decoration: none;
-        font-size: 22px;
-        white-space: nowrap;
-      }
-
       .dropdown a:hover {
-        background-color: #222;
-        color: gold;
-      }
+        background: rgba(255,255,255,0.06);
+        color: #E31837;
+     }
+
+     .nav-item::after {
+        content: "";
+
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+
+        width: 0%;
+        height: 2px;
+
+        background: #E31837;
+
+        transition: width 0.25s ease;
+     }
+     .nav-item:hover::after {
+        width: 100%;
+     }
 
       .divider {
         color: #2C2C2C;
-        margin-left: -20px;
-        margin-right: -20px;
+        width: 100%;
       }
     `];
   }
@@ -146,7 +222,7 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
     return html`
         <div class="top-row-wrapper">
             <a title="Home Button" href="?page=home" @click=${this._goHome}>
-            <img class="home-image" src="/images/website-home-button-logo-png.jpg" alt="Neural Shot Labs Logo">
+            <img class="home-image" src="/images/website-home-button-logo-png.png" alt="Neural Shot Labs Logo">
             </a>
 
             <div class="nav-buttons">
