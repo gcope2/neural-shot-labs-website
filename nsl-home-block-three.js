@@ -48,6 +48,8 @@ export class NSLHomeBlockThree extends DDDSuper(I18NMixin(LitElement)) {
         text-align: center;
         max-width: 520px;
         align-items: center;
+        margin-bottom: 25px;
+        margin-top: 15px;
       }
       .title {
         color: #E31837;

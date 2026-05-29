@@ -23,6 +23,7 @@ export class NSLCards extends DDDSuper(I18NMixin(LitElement)) {
     this.title = "";
     this.content = "";
     this.image = "";
+    this.imageSize = "80";
   }
 
   // Lit reactive properties
@@ -32,6 +33,7 @@ export class NSLCards extends DDDSuper(I18NMixin(LitElement)) {
       title: { type: String },
       content: { type: String },
       image: { type: String },
+      imageSize: { type: String },
     };
   }
 
@@ -55,7 +57,7 @@ export class NSLCards extends DDDSuper(I18NMixin(LitElement)) {
         height: 100%;
         background-color: #1E1E1E;
         border: 1px solid rgb(255 255 255 / 0.1);
-        border-radius: 12px;
+        border-radius: 20px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -64,6 +66,7 @@ export class NSLCards extends DDDSuper(I18NMixin(LitElement)) {
       .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0 0 2px #E31837);
       }
       .card:hover img {
         filter: drop-shadow(0 0 10px rgba(227, 24, 55, 0.65));
@@ -95,7 +98,7 @@ export class NSLCards extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
         <div class="card">
-          ${this.image ? html`<img src="${this.image}" alt="${this.title}">` : ''}
+          ${this.image ? html`<img src="${this.image}" alt="${this.title}" style="width: ${this.imageSize}px; height: ${this.imageSize}px;">` : ''}
           <h3 class="title">${this.title}</h3>
           <p class="content">${this.content}</p>
         </div>

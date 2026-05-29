@@ -6,6 +6,7 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./nsl-cards.js";
+import "./nsl-block-layout.js";
 
 /**
  * `nsl-home-block-two`
@@ -77,6 +78,7 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
         display: flex;
         justify-content: center;
         padding-top: 20px;
+        margin-bottom: 25px;
       }
 
       .cards {
@@ -86,22 +88,43 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
         gap: 30px;
         margin-top: 20px;
       }
+
+      .layout {
+        margin-top: 15px;
+      }
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
-        <div class="column">
-          <h6 class="title">WHAT WE DO</h6>
-          <h2 class="subtitle">Building focused intelligent systems across a few key areas.</h2>
-          <h6 class="paragraph-one">Everything we work on follows the same philosophy: start with real user needs, use the right level of AI, and ship tools that people rely on.</h6>
-        </div>
+        <nsl-block-layout class="layout"
+            title="WHAT WE DO"
+            subtitle="Building focused intelligent systems across a few key areas."
+            pone="Everything we work on follows the same philosophy: start with real user needs, use the right level of AI, and ship tools that people rely on.">
+        </nsl-block-layout>
 
         <div class="cards">
-            <nsl-cards class="card-one" style="width: 300px; height: 325px;" image="images/red-weight.png" title="Sports & Performance Tech" content="Our starting point. We’re building specialized tools that help throwers and coaches get better data, clearer feedback, and measurable progress — without adding complexity."></nsl-cards>
-            <nsl-cards class="card-two" style="width: 300px; height: 325px;" image="images/red-laptop.png" title="Custom AI & Mobile Tools" content="We design and build custom mobile and web applications that incorporate computer vision, data analysis, or lightweight machine learning — always scoped tightly to the actual problem."></nsl-cards>
-            <nsl-cards class="card-three" style="width: 300px; height: 325px;" image="images/red-light.png" title="AI Strategy & Advisory" content="For organizations exploring AI but tired of vague promises, we offer focused consulting — helping teams identify high-ROI use cases, evaluate approaches, and build internal capability without over-engineering."></nsl-cards>
+            <nsl-cards class="card-one" style="width: 300px; height: 325px;" 
+                imageSize="75"
+                image="images/red-weight.png" 
+                title="Sports & Performance Tech" 
+                content="Our starting point. We’re building specialized tools that help throwers and coaches get better data, clearer feedback, and measurable progress — without adding complexity.">
+            </nsl-cards>
+
+            <nsl-cards class="card-two" style="width: 300px; height: 325px;" 
+                imageSize="75"
+                image="images/red-laptop.png" 
+                title="Custom AI & Mobile Tools" 
+                content="We design and build custom mobile and web applications that incorporate computer vision, data analysis, or lightweight machine learning — always scoped tightly to the actual problem.">
+            </nsl-cards>
+
+            <nsl-cards class="card-three" style="width: 300px; height: 325px;" 
+                imageSize="75"
+                image="images/red-light.png" 
+                title="AI Strategy & Advisory" 
+                content="For organizations exploring AI but tired of vague promises, we offer focused consulting — helping teams identify high-ROI use cases, evaluate approaches, and build internal capability without over-engineering.">
+            </nsl-cards>
         </div>
 
         <div class="under-text">
