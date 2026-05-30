@@ -17,21 +17,21 @@ export default {
       ]
     },
     {
-      id: "contact",
-      title: "Contact",
-      slug: "contact",
-      location: "?page=contact",
-      children: [
-        { id: "contact-main", title: "Get in Touch", slug: "contact" },
-      ]
-    },
-    {
       id: "what-we-do",
       title: "What We Do",
       slug: "what-we-do",
       location: "?page=what-we-do",
       children: [
         { id: "what-we-do-main", title: "Our Services", slug: "what-we-do" },
+      ]
+    },
+    {
+      id: "contact",
+      title: "Contact",
+      slug: "contact",
+      location: "?page=contact",
+      children: [
+        { id: "contact-main", title: "Get in Touch", slug: "contact" },
       ]
     }
   ]

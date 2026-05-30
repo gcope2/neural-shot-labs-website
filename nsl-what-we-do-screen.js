@@ -5,6 +5,7 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./nsl-what-block-one.js";
 
 /**
  * `nsl-what-we-do-screen`
@@ -20,14 +21,12 @@ export class NSLWhatWeDoScreen extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
     };
   }
 
@@ -37,6 +36,24 @@ export class NSLWhatWeDoScreen extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
+        background-color: #050505;
+      }
+
+      .title {
+        font-size: 75px;
+        width: 850px;
+      }
+      .subtitle {
+        font-size: 27px;
+        color: #E31837;
+      }
+      .column {
+        padding-top: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 25px;
       }
     `];
   }
@@ -44,7 +61,12 @@ export class NSLWhatWeDoScreen extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-        <h1>Hello World</h1>
+        <div class="column">
+          <h1 class="title">We solve real problems with practical AI.</h1>
+          <h4 class="subtitle">Sports Performance Tools • Business Automation • AI Implementation</h4>
+        </div>
+
+        <nsl-what-block-one class="block-one"></nsl-what-block-one>
       `;
   }
 }

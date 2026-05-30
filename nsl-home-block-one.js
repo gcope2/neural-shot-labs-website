@@ -75,12 +75,12 @@ export class NSLHomeBlockOne extends DDDSuper(I18NMixin(LitElement)) {
         </nsl-block-layout>
 
         <div class="cards">
-          <nsl-cards class="card-one" style="width: 315px; height: 210px;" 
+          <nsl-cards class="card-one" style="width: 315px; height: 215px;" 
             title="Practical over hype" 
             content="We care about tools that people actually use every day and that produce real results — whether that’s adding distance in the circle or helping a business make better decisions.">
           </nsl-cards>
-          
-          <nsl-cards class="card-two" style="width: 315px; height: 210px;" 
+
+          <nsl-cards class="card-two" style="width: 315px; height: 215px;" 
             title="Open to the right work" 
             content="While we have core projects we’re driving, we’re selectively exploring custom development and advisory work with organizations that value focused, effective AI.">
           </nsl-cards>

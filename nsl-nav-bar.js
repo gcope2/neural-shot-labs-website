@@ -29,6 +29,7 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       navItems: { type: Array },
+      currentScreen: { type: String },
     };
   }
 
@@ -136,7 +137,8 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
         background: transparent;
      }
 
-      .nav-item:hover {
+      .nav-item:hover,
+      .nav-item.active {
         color: #E31837;
       }
 
@@ -192,6 +194,10 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
         color: #E31837;
      }
 
+      .dropdown a.active {
+        color: #E31837;
+      }
+
      .nav-item::after {
         content: "";
 
@@ -226,22 +232,24 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
             </a>
 
             <div class="nav-buttons">
-            ${this.navItems.map(item => html`
-                <div class="nav-item">
-                <span title="${item.title} Button" @click=${() => this._navigateTo(item.slug)}>${item.title}</span>
-                
-                ${item.children ? html`
+            ${this.navItems.map(item => {
+              const active = this._isActiveNav(item);
+              return html`
+                <div class="nav-item ${active ? 'active' : ''}">
+                  <span title="${item.title} Button" @click=${() => this._navigateTo(item.slug)}>${item.title}</span>
+                  ${item.children ? html`
                     <div class="dropdown">
-                    ${item.children.map(child => html`
-                        <a title="${child.title} Button" href="?page=${child.slug}" 
+                      ${item.children.map(child => html`
+                        <a class="${this.currentScreen === child.slug ? 'active' : ''}" title="${child.title} Button" href="?page=${child.slug}" 
                         @click=${(e) => this._navigateTo(child.slug, e)}>
                         ${child.title}
                         </a>
-                    `)}
+                      `)}
                     </div>
-                ` : ''}
+                  ` : ''}
                 </div>
-            `)}
+              `;
+            })}
             </div>
         </div>
 
@@ -256,6 +264,12 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
       bubbles: true, 
       composed: true 
     }));
+  }
+
+  _isActiveNav(item) {
+    if (item.slug === this.currentScreen) return true;
+    if (item.children?.some(child => child.slug === this.currentScreen)) return true;
+    return false;
   }
 
   _goHome(e) {

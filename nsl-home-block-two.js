@@ -105,21 +105,21 @@ export class NSLHomeBlockTwo extends DDDSuper(I18NMixin(LitElement)) {
         </nsl-block-layout>
 
         <div class="cards">
-            <nsl-cards class="card-one" style="width: 300px; height: 325px;" 
+            <nsl-cards class="card-one" style="width: 360px; height: 375px;" 
                 imageSize="75"
                 image="images/red-weight.png" 
                 title="Sports & Performance Tech" 
                 content="Our starting point. We’re building specialized tools that help throwers and coaches get better data, clearer feedback, and measurable progress — without adding complexity.">
             </nsl-cards>
 
-            <nsl-cards class="card-two" style="width: 300px; height: 325px;" 
+            <nsl-cards class="card-two" style="width: 360px; height: 375px;" 
                 imageSize="75"
                 image="images/red-laptop.png" 
                 title="Custom AI & Mobile Tools" 
                 content="We design and build custom mobile and web applications that incorporate computer vision, data analysis, or lightweight machine learning — always scoped tightly to the actual problem.">
             </nsl-cards>
 
-            <nsl-cards class="card-three" style="width: 300px; height: 325px;" 
+            <nsl-cards class="card-three" style="width: 360px; height: 375px;" 
                 imageSize="75"
                 image="images/red-light.png" 
                 title="AI Strategy & Advisory" 

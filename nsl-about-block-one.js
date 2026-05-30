@@ -69,8 +69,8 @@ export class NSLAboutBlockOne extends DDDSuper(I18NMixin(LitElement)) {
                 pthree="That focus continues today, while we also help businesses automate repetitive work and improve performance using practical AI.">
             </nsl-block-layout>
 
-            <nsl-cards class="card-one" style="width: 315px; height: 225px;"
-                imageSize="60"
+            <nsl-cards class="card-one" style="width: 350px; height: 225px;"
+                imageSize="55"
                 image="images/lightning-bolt.png"
                 title="Founded 2025 - Maryland"
                 content="A focused AI & software company that believes in practical intelligence over hype.">

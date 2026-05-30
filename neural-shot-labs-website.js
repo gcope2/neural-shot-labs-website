@@ -57,7 +57,7 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-      <nsl-nav-bar @navigate=${this._handleNavigation}></nsl-nav-bar>
+      <nsl-nav-bar .currentScreen=${this.currentScreen} @navigate=${this._handleNavigation}></nsl-nav-bar>
 
       <div>
         ${this.currentScreen === 'home' ? html`<nsl-home-screen></nsl-home-screen>` : ''}
