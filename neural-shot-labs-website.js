@@ -81,12 +81,25 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
       this.currentScreen = 'home';
       window.history.replaceState({}, '', '?page=home');
     }
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
   }
 
   _handleNavigation(e) {
     const screen = e.detail.screen;
+
     this.currentScreen = screen;
     window.history.pushState({}, '', `?page=${screen}`);
+
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+    });
   }
 
 }
