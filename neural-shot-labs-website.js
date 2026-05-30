@@ -47,6 +47,7 @@ export class NeuralShotLabsWebsite extends DDDSuper(I18NMixin(LitElement)) {
       :host {
         display: block;
         font-family: 'Inter', system_ui, sans-serif;
+        scroll-behavior: smooth;
       }
       .footer {
         padding-top: 40px;

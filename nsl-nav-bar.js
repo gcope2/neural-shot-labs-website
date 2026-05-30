@@ -86,7 +86,7 @@ export class NSLNavBar extends DDDSuper(I18NMixin(LitElement)) {
 
       .home-image {
         cursor: pointer;
-        height: 75px;
+        height: 85px;
         padding-left: 20px;
         width: auto;
 

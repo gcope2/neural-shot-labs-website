@@ -64,7 +64,7 @@ export class NSLHomeScreen extends DDDSuper(I18NMixin(LitElement)) {
         height: auto;
         margin: 0 auto;
         margin-top: 140px;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         transition:
         filter 0.5s ease,
         transform 0.5s ease;
@@ -77,18 +77,21 @@ export class NSLHomeScreen extends DDDSuper(I18NMixin(LitElement)) {
       .title {
         font-size: 60px;
         margin: 0 0 25px;
+        font-weight: 700;
       }
       .tagline {
         font-size: 50px;
         max-width: 750px;
         margin: 0 0 30px;
+        font-weight: 450;
       }
       .subtitle {
         font-size: 25px;
         max-width: 650px;
         margin: 0;
         color: #D3D3D3;
-        padding-bottom: 70px;
+        padding-bottom: 15px;
+        font-weight: normal;
       }
       
       .column {
@@ -114,6 +117,74 @@ export class NSLHomeScreen extends DDDSuper(I18NMixin(LitElement)) {
         background-color: #050505;
         padding-top: 30px;
       }
+
+      .learn-more-button {
+        background: linear-gradient(
+          135deg,
+          #ff2045,
+          #d60f2f
+        );
+
+        color: white;
+        border: none;
+
+        padding: 18px 40px;
+
+        border-radius: 999px;
+
+        font-size: 20px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .learn-more-button:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+          0 0 25px rgba(227, 24, 55, 0.35);
+      }
+
+      .contact-button {
+        background: transparent;
+
+        color: white;
+
+        border: 1px solid rgba(255,255,255,0.15);
+
+        padding: 18px 40px;
+
+        border-radius: 999px;
+
+        font-size: 20px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition:
+          border-color 0.25s ease,
+          transform 0.25s ease,
+          background 0.25s ease;
+      }
+      .contact-button:hover {
+        border-color: rgba(227,24,55,0.5);
+
+        background: rgba(255,255,255,0.03);
+
+        transform: translateY(-2px);
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        margin-top: 40px;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-bottom: 70px;
+      }
     `];
   }
 
@@ -126,21 +197,56 @@ export class NSLHomeScreen extends DDDSuper(I18NMixin(LitElement)) {
               <h1 class="title">Neural<span style="color: red;">Shot</span> Labs</h1>
               <h1 class="tagline">AI-Powered Solutions for Performance and Productivity</h1>
               <h2 class="subtitle">We build practical AI tools and solutions that help athletes and organizations perform better and work smarter.</h2>
-          </div>
+              
+              <div class="hero-buttons">
+                <button class="learn-more-button" @click=${this.scrollToBlockOne}>
+                  Learn More
+                </button>
+                <button class="contact-button" @click=${this.scrollToBlockThree}>
+                  Contact Us
+                </button>
+              </div>
+            </div>
         </div>
 
-        <div>
+        <div id="block-one">
             <nsl-home-block-one class="block-one"></nsl-home-block-one>
         </div>
 
-        <div>
+        <div id="block-two">
             <nsl-home-block-two class="block-two"></nsl-home-block-two>
         </div>
 
-        <div>
+        <div id="block-three">
             <nsl-home-block-three class="block-three"></nsl-home-block-three>
         </div>
       `;
+  }
+
+  scrollToBlockOne() {
+    const element = this.renderRoot.querySelector('#block-one');
+
+    if (element) {
+      const y = element.offsetTop - 75;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  scrollToBlockThree() {
+    const element = this.renderRoot.querySelector('#block-three');
+
+    if (element) {
+      const y = element.offsetTop - 75;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
   }
 }
 
